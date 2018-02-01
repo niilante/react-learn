@@ -1,22 +1,33 @@
 import path from 'path';
+import webpack from 'webpack';
 
-module.exports = {
-  entry: path.join(__dirname, '/client/index.js'),
+export default {
+  entry: [
+    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors/
+    'webpack-hot-middleware/client?reload=true',
+    path.join(__dirname, '/client/index.js')
+  ],
   output: {
-    filename: 'bundle.js',
-    path: '/'
+    path: path.resolve(__dirname, '/dist'),
+    publicPath: '/',
+    filename: 'bundle.js'
   },
-  module: {
-    rules: [
+  devtool: '#source-map',
+  plugins: [
+    new webpack.NoEmitOnErrorsPlugin(),
+    new webpack.HotModuleReplacementPlugin()
+  ],
+  module:{
+    loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?/,
         include: path.join(__dirname, 'client'),
-        loaders: ['babel-loader']
+        loaders: ['react-hot-loader/webpack','babel-loader'],
+        exclude: /node_modules/
       }
     ]
   },
-
   resolve: {
-    extensions: ['*','.js']
+    extensions: ['.js', '.jsx']
   }
 };
