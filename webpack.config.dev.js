@@ -7,11 +7,12 @@ module.exports = {
     path: '/'
   },
   module: {
-    loaders: [{
-      test: /\.js$/,
-      include: path.join(__dirname, 'client'),
-      loaders: ['babel-loader']
-    }
+    rules: [
+      {
+        test: /\.js$/,
+        include: path.join(__dirname, 'client'),
+        loaders: ['babel-loader']
+      }
     ]
   },
 
