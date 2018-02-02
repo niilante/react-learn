@@ -3,7 +3,7 @@ import webpack from 'webpack';
 
 export default {
   entry: [
-    'webpack/hot/only-dev-server', // "only" prevents reload on syntax errors/
+    'webpack/hot/only-dev-server', // 'only' prevents reload on syntax errors/
     'webpack-hot-middleware/client?reload=true',
     path.join(__dirname, '/client/index.js')
   ],
@@ -18,12 +18,28 @@ export default {
     new webpack.HotModuleReplacementPlugin()
   ],
   module:{
-    loaders: [
+    rules: [
       {
         test: /\.jsx?/,
         include: path.join(__dirname, 'client'),
         loaders: ['react-hot-loader/webpack','babel-loader'],
         exclude: /node_modules/
+      }, {
+        test: /\.scss$/,
+        use: [{
+          loader: 'style-loader' // creates style nodes from JS strings
+        },
+        {
+          loader: 'css-loader' // translates CSS into CommonJS
+        },
+        {
+          loader: 'postcss-loader'
+        },
+        {
+          loader: 'sass-loader' // compiles Sass to CSS
+        }
+        ]
+
       }
     ]
   },
