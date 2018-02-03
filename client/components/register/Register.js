@@ -5,10 +5,6 @@ import { Form } from './../form/Form';
 import { Currentuser } from './../currentuser/Currentuser';
 
 export class Register extends React.Component {
-  state = {
-  	fields: {},
-  };
-
   constructor(props) {
     super(props);
     this.state = {

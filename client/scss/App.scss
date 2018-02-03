@@ -1,8 +1,5 @@
-body{
-  min-height: 100vh;
-  background-color: tomato;
-  color: white;
-  display: flex;
-  justify-content: center;
-  flex: 1;
-}
+@import "variables";
+@import "mixins";
+@import "fonts";
+@import "structure";
+@import "login";
