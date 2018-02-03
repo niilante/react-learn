@@ -1,19 +1,13 @@
 import React from 'react';
 
-import Wish from './Wish';
+import { Register } from './register/Register';
 
 class App extends React.Component {
-  constructor() {
-    super();
-  }
-
   render() {
     return (
-      <div>
-        <Wish />
-        <h2>kooooooooooooooy</h2>
-        <h3>kooooooooooooooy</h3>
-      </div>
+      <main>
+        <Register />
+      </main>
     );
   }
 }
