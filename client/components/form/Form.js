@@ -137,7 +137,7 @@ export class Form extends React.Component {
           </div>
 					{ !this.state.lastName.isValid ?
 						<span className="validation-msg">The last name can not be blank</span> :
-						inputValidationResult
+						null
 					}
         </div>
 
@@ -177,7 +177,7 @@ export class Form extends React.Component {
               placeholder="E-Mail"
             />
           </div>
-					{ this.state.email.isValid ?
+					{ !this.state.email.isValid ?
 						<span className="validation-msg">The email can not be blank OR The email has to be valid</span> :
 						null
 					}
@@ -203,7 +203,7 @@ export class Form extends React.Component {
               </label>
             </span>
           </div>
-					{ this.state.password.isValid ?
+					{ !this.state.password.isValid ?
 						<span className="validation-msg">The password can not be blank</span> :
 						null
 					}
