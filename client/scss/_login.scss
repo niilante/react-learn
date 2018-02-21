@@ -98,12 +98,7 @@ form {
 		.input-field {
 			border-color: $validation-color;
 		}
-
-		+ .validation-msg {
-			display: inline-block;
-		}
 	}
-
 
 	.input-addon {
 	  background-color: #edeced;
@@ -151,8 +146,7 @@ form {
 }
 
 .validation-msg {
-	display: none;
-	// display: inline-block;
+	display: inline-block;
 	background-color: $validation-bgc;
 	color: $validation-color;
 	padding: 0.5rem 1rem;
