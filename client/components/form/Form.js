@@ -4,6 +4,7 @@ export class Form extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      passwordType: 'password',
       fillables: ['firstName', 'lastName', 'email', 'username', 'password'], // this is done through manual listing in array so that you have control which fields should be validated for before submit
       firstName: {
         val: '',
@@ -27,13 +28,12 @@ export class Form extends React.Component {
       }
     };
   }
-  // state = {
-  //   firstName: '',
-  //   lastName: '',
-  //   username: '',
-  //   email: '',
-  //   password: ''
-  // };
+
+	showHide = () => {
+		this.setState({
+			passwordType: this.state.passwordType === 'password' ? 'text' : 'password'
+		})
+	}
 
   validateForStringChars(str) {
     const re = /\b[^\d\W]+\b/g;
@@ -99,7 +99,6 @@ export class Form extends React.Component {
   render() {
     return(
       <form>
-				<h1>{this.state.firstName.isValid ? "valid" : "has-error"}</h1>
         <div className="form-group">
           <label>First Name</label>
           <div className={this.state.firstName.isValid ? "input-group" : "input-group has-error"}>
@@ -191,7 +190,7 @@ export class Form extends React.Component {
               <i className="icon-lock"></i>
             </span>
             <input
-              type="password"
+              type={this.state.passwordType}
               name="password"
               value={this.state.password.val}
               onChange={this.onChange}
@@ -200,7 +199,7 @@ export class Form extends React.Component {
             />
             <span className="input-addon">
               <label className="addon-label">
-                <input className="addon-checkbox" type="checkbox" />Anzeigen
+                <input className="addon-checkbox" type="checkbox" onClick={this.showHide} />Show
               </label>
             </span>
           </div>
