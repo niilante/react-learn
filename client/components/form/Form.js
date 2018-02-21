@@ -29,11 +29,11 @@ export class Form extends React.Component {
     };
   }
 
-	showHide = () => {
-		this.setState({
-			passwordType: this.state.passwordType === 'password' ? 'text' : 'password'
-		})
-	}
+  showHide = () => {
+    this.setState({
+      passwordType: this.state.passwordType === 'password' ? 'text' : 'password'
+    })
+  }
 
   validateForStringChars(str) {
     const re = /\b[^\d\W]+\b/g;
@@ -114,10 +114,10 @@ export class Form extends React.Component {
               placeholder="Vorname"
             />
           </div>
-					{ !this.state.firstName.isValid ?
-						<span className="validation-msg">The first name can not be blank</span> :
-						null
-					}
+          { !this.state.firstName.isValid ?
+            <span className="validation-msg">The first name can not be blank</span> :
+            null
+          }
         </div>
 
         <div className="form-group">
@@ -209,19 +209,19 @@ export class Form extends React.Component {
           }
         </div>
 
-				<div className="form-group">
-        	<div className="input-group terms-and-conditions">
-          	<label>
-							<input
-								type="checkbox"
-								name="agree-terms"
-								className="agree-terms"
-							/>
-								Ich willige in die Verarbeitung und Nutzung meiner Daten gemäß der <a href="/info/show/privacy" target="_blank">Datenschutzerklärung</a> ein.
-						</label>
-        	</div>
-					<span className="validation-msg">The terms have to be accepted</span>
-				</div>
+        <div className="form-group">
+          <div className="input-group terms-and-conditions">
+            <label>
+              <input
+                type="checkbox"
+                name="agree-terms"
+                className="agree-terms"
+              />
+              Ich willige in die Verarbeitung und Nutzung meiner Daten gemäß der <a href="/info/show/privacy" target="_blank">Datenschutzerklärung</a> ein.
+            </label>
+          </div>
+          <span className="validation-msg">The terms have to be accepted</span>
+        </div>
 
         <button
           type="submit"
