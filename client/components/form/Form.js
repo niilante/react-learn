@@ -135,10 +135,10 @@ export class Form extends React.Component {
               placeholder="Nachname"
             />
           </div>
-					{ !this.state.lastName.isValid ?
-						<span className="validation-msg">The last name can not be blank</span> :
-						null
-					}
+          { !this.state.lastName.isValid ?
+            <span className="validation-msg">The last name can not be blank</span> :
+            null
+          }
         </div>
 
         <div className="form-group">
@@ -156,10 +156,10 @@ export class Form extends React.Component {
               placeholder="Mitgliedsname"
             />
           </div>
-					{ !this.state.username.isValid ?
-						<span className="validation-msg">The username can not be blank</span> :
-						null
-					}
+          { !this.state.username.isValid ?
+            <span className="validation-msg">The username can not be blank</span> :
+            null
+          }
         </div>
 
         <div className="form-group">
@@ -177,10 +177,10 @@ export class Form extends React.Component {
               placeholder="E-Mail"
             />
           </div>
-					{ !this.state.email.isValid ?
-						<span className="validation-msg">The email can not be blank OR The email has to be valid</span> :
-						null
-					}
+          { !this.state.email.isValid ?
+            <span className="validation-msg">The email can not be blank OR The email has to be valid</span> :
+            null
+          }
         </div>
 
         <div className="form-group">
@@ -203,10 +203,10 @@ export class Form extends React.Component {
               </label>
             </span>
           </div>
-					{ !this.state.password.isValid ?
-						<span className="validation-msg">The password can not be blank</span> :
-						null
-					}
+          { !this.state.password.isValid ?
+            <span className="validation-msg">The password can not be blank</span> :
+            null
+          }
         </div>
 
 				<div className="form-group">
