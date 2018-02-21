@@ -66,7 +66,7 @@ export class Form extends React.Component {
         inputValidationResult = input.value.length > 0;
         break;
       default:
-        inputValidationResult = false;  
+        inputValidationResult = false;
     }
     this.setState({
       [input.name]: { val: input.value, isValid: inputValidationResult }
@@ -85,8 +85,11 @@ export class Form extends React.Component {
 
   onSubmit = event => { // better call long form 'event' so that other 'e' don't appear in your editor search when you want to find the place where you passed an event from an input/form
   	event.preventDefault();
+		console.log('Submitted the form');
+		console.log(isFormValid);
     const isFormValid = this.state.fillables.every((element) => this.state[element].isValid);
     if (isFormValid) {
+			console.log('it is valid');
       const formData = this.state.fillables.map(key => { return { [key]: this.state[key]['val']} });
       this.props.onSubmit(this.state); // Good practice is to name methods with 'on' prefix that are local to the component and do some simple job of /validation/state update/reacting to events && passing along data/ to other methods [in this particular example it would be nice to name so that the call looks this.props.sendFormData or this.props.submitForm]
     }
@@ -97,8 +100,8 @@ export class Form extends React.Component {
     return(
       <form>
         <div className="form-group">
-          <label>Vorname</label>
-          <div className="input-group">
+          <label>First Name</label>
+          <div className={this.state.firstName.isValid ? "input-group" : "input-group has-error"}>
             <span className="input-addon">
               <i className="icon-user"></i>
             </span>
@@ -107,15 +110,16 @@ export class Form extends React.Component {
               name="firstName"
               value={this.state.firstName.val}
               onChange={this.onChange}
-              className={this.state.firstName.isValid ? "input-field" : "input-field some-error-class"} // some-error-class that should paint field in red probably
+              className="input-field"
               placeholder="Vorname"
             />
           </div>
+					<span className="validation-msg">The first name can not be blank</span>
         </div>
 
         <div className="form-group">
-          <label>Nachname</label>
-          <div className="input-group">
+          <label>Last Name</label>
+					<div className={this.state.lastName.isValid ? "input-group" : "input-group has-error"}>
             <span className="input-addon">
               <i className="icon-user"></i>
             </span>
@@ -124,15 +128,16 @@ export class Form extends React.Component {
               name="lastName"
               value={this.state.lastName.val}
               onChange={this.onChange}
-              className={this.state.lastName.isValid ? "input-field" : "input-field some-error-class"}
+              className="input-field"
               placeholder="Nachname"
             />
           </div>
+					<span className="validation-msg">The last name can not be blank</span>
         </div>
 
         <div className="form-group">
-          <label>Mitgliedsname</label>
-          <div className="input-group">
+          <label>Username</label>
+					<div className={this.state.username.isValid ? "input-group" : "input-group has-error"}>
             <span className="input-addon">
               <i className="icon-user"></i>
             </span>
@@ -141,15 +146,16 @@ export class Form extends React.Component {
               name="username"
               value={this.state.username.val}
               onChange={this.onChange}
-              className={this.state.username.isValid ? "input-field" : "input-field some-error-class"}
+              className="input-field"
               placeholder="Mitgliedsname"
             />
           </div>
+					<span className="validation-msg">The username can not be blank</span>
         </div>
 
         <div className="form-group">
           <label>E-Mail</label>
-          <div className="input-group">
+					<div className={this.state.email.isValid ? "input-group" : "input-group has-error"}>
             <span className="input-addon">
               <i className="icon-mail"></i>
             </span>
@@ -158,15 +164,16 @@ export class Form extends React.Component {
               name="email"
               value={this.state.email.val}
               onChange={this.onChange}
-              className={this.state.email.isValid ? "input-field" : "input-field some-error-class"}
+              className="input-field"
               placeholder="E-Mail"
             />
           </div>
+					<span className="validation-msg">The email can not be blank OR The email has to be valid</span>
         </div>
 
         <div className="form-group">
-          <label>Passwort</label>
-          <div className="input-group">
+          <label>Password</label>
+					<div className={this.state.password.isValid ? "input-group" : "input-group has-error"}>
             <span className="input-addon">
               <i className="icon-lock"></i>
             </span>
@@ -175,8 +182,8 @@ export class Form extends React.Component {
               name="password"
               value={this.state.password.val}
               onChange={this.onChange}
-              className={this.state.password.isValid ? "input-field" : "input-field some-error-class"}
-              placeholder="Passwort"
+              className="input-field"
+              placeholder="Password"
             />
             <span className="input-addon">
               <label className="addon-label">
@@ -184,11 +191,23 @@ export class Form extends React.Component {
               </label>
             </span>
           </div>
+					<span className="validation-msg">The password can not be blank</span>
         </div>
 
-        <div className="input-group terms-and-conditions">
-          <label><input className="agree-terms" type="checkbox" /> Ich willige in die Verarbeitung und Nutzung meiner Daten gemäß der <a href="/info/show/privacy" target="_blank">Datenschutzerklärung</a> ein.</label>
-        </div>
+				<div className="form-group">
+        	<div className="input-group terms-and-conditions">
+          	<label>
+							<input
+								type="checkbox"
+								name="agree-terms"
+								className="agree-terms"
+							/>
+								Ich willige in die Verarbeitung und Nutzung meiner Daten gemäß der <a href="/info/show/privacy" target="_blank">Datenschutzerklärung</a> ein.
+						</label>
+        	</div>
+					<span className="validation-msg">The terms have to be accepted</span>
+				</div>
+
         <button
           type="submit"
           className="cta-button"
